@@ -1,0 +1,40 @@
+Database Collections 
+
+1- user (admin - owner - player)
+2- playgrounds
+3- 
+
+
+
+Routes
+
+/users
+	get	>>	get all users
+	post	>>	create a new user
+	delete	>>	delete a specific user using userID
+	put	>>	update user data using userID
+
+
+/playground
+	get	>> 	get all playgrounds
+	post	>>	create a new playground
+	delete	>>	delete a specific playground using id
+	patch	>>	update data of a specific playground using id
+
+
+/book
+	get	>>	get all booked playgrounds for a specific user using userID
+	post	>>	create a new booked playground for a specific user
+	delete	>> 	delete a specific booked playground for user
+	patch	>>	---
+
+/ADs (ad document is temporary)
+	get	>> get all ADs
+	post	>> create a new ad
+	delete	>> delete a specific ad
+	patch	>> update ad data
+
+/accountSettings
+	get	>>	get all settings of account
+	patch	>> 	update settings of a specific account
+

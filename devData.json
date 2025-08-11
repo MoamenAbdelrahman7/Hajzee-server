@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Amman Sport",
+    "location": "12km Airport road, Amman",
+    "costPerHour": 30,
+    "ratings": 4.5,
+    "imageCover": "./images/img1.png",
+    "images": [
+      "./images/img1.png",
+      "./images/img2.png",
+      "./images/img3.png"
+    ],
+    "openningTime": "14:30",
+    "closingTime": "19:00"
+  },
+  {
+    "name": "Champions Arena",
+    "location": "King Abdullah II Street, Amman",
+    "costPerHour": 35,
+    "ratings": 4.2,
+    "imageCover": "./images/img1.png",
+    "images": [
+      "./images/img1.png",
+      "./images/img2.png",
+      "./images/img3.png"
+    ],
+    "openningTime": "14:30",
+    "closingTime": "19:00"
+  },
+  {
+    "name": "Green Field",
+    "location": "Zarqa Highway, Zarqa",
+    "costPerHour": 28,
+    "ratings": 3.9,
+    "imageCover": "./images/img1.png",
+    "images": [
+      "./images/img1.png",
+      "./images/img2.png",
+      "./images/img3.png"
+    ],
+    "openningTime": "14:30",
+    "closingTime": "19:00"
+  },
+  {
+    "name": "Downtown Turf",
+    "location": "Downtown Boulevard, Amman",
+    "costPerHour": 40,
+    "ratings": 4.8,
+    "imageCover": "./images/img1.png",
+    "images": [
+      "./images/img1.png",
+      "./images/img2.png",
+      "./images/img3.png"
+    ],
+    "openningTime": "14:30",
+    "closingTime": "19:00"
+  },
+  {
+    "name": "Royal Goals",
+    "location": "Queen Rania Street, Amman",
+    "costPerHour": 38,
+    "ratings": 4.4,
+    "imageCover": "./images/img1.png",
+    "images": [
+      "./images/img1.png",
+      "./images/img2.png",
+      "./images/img3.png"
+    ],
+    "openningTime": "14:30",
+    "closingTime": "19:00"
+  }
+]
