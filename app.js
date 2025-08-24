@@ -75,8 +75,8 @@ app.use("/static", cors(), express.static(path.join(__dirname, "public")))
 app.options("/static/*", cors())
 
 // app routes
-app.use("/playgrounds", playGroundRoutes)
 app.use("/users", userRoutes)
+app.use("/playgrounds", playGroundRoutes)
 app.use("/bookings", bookingRoutes)
 app.use("/favourites", favouritesRoutes)
 app.use("/admin", adminRoutes)

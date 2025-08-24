@@ -31,30 +31,35 @@ exports.uploadPlaygroundImages = upload.fields([
 ])
 
 exports.resizePlaygroundImages = catchAsync(async (req, res, next) => {
-    if (!req.files || !req.files.imageCover || !req.files.images) { return next() }
+    console.log("resizePlaygroundImages req.files", req.files);
+    if (!req.files) { return next() }
 
-    // Resize imageCover
-    let tempId = crypto.randomBytes(12).toString("hex")
-    req.body.imageCover = `playground-${tempId}-${Date.now()}-cover.jpeg`
+    // Resize imageCover if provided
+    if (req.files.imageCover && req.files.imageCover.length > 0) {
+        let tempId = crypto.randomBytes(12).toString("hex")
+        req.body.imageCover = `playground-${tempId}-${Date.now()}-cover.jpeg`
 
-    await sharp(req.files.imageCover[0].buffer)
-        .resize(2000, 1333)
-        .toFormat("jpeg")
-        .jpeg({ quality: 90 })
-        .toFile(`public/img/playgrounds/${req.body.imageCover}`)
-
-    // Resize images
-    tempId = crypto.randomBytes(12).toString("hex")
-    req.body.images = []
-    await Promise.all(req.files.images.map(async (file, i) => {
-        let filename = `playground-${tempId}-${Date.now()}-${i}-.jpeg`
-        await sharp(file.buffer)
-            .resize(512, 512)
+        await sharp(req.files.imageCover[0].buffer)
+            .resize(2000, 1333)
             .toFormat("jpeg")
             .jpeg({ quality: 90 })
-            .toFile(`public/img/playgrounds/${filename}`)
-        req.body.images.push(filename)
-    }))
+            .toFile(`public/img/playgrounds/${req.body.imageCover}`)
+    }
+
+    // Resize images if provided
+    if (req.files.images && req.files.images.length > 0) {
+        let tempId = crypto.randomBytes(12).toString("hex")
+        req.body.images = []
+        await Promise.all(req.files.images.map(async (file, i) => {
+            let filename = `playground-${tempId}-${Date.now()}-${i}-.jpeg`
+            await sharp(file.buffer)
+                .resize(512, 512)
+                .toFormat("jpeg")
+                .jpeg({ quality: 90 })
+                .toFile(`public/img/playgrounds/${filename}`)
+            req.body.images.push(filename)
+        }))
+    }
     console.log("req.body.imageCover, ", req.body.imageCover);
     console.log("req.body.images, ", req.body.images);
 
@@ -116,7 +121,7 @@ exports.createPlayGround = async (req, res) => {
 
 exports.updatePlayGround = catchAsync(async (req, res, next) => {
     const id = req.params.id
-
+    console.log("updatePlayGround req.body", req.body);
     const updatedPlayGround = await PlayGround.findByIdAndUpdate(id, req.body, {
         new: true,
         runValidators: true
