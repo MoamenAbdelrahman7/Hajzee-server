@@ -75,6 +75,9 @@ app.use("/static", cors(), express.static(path.join(__dirname, "public")))
 app.options("/static/*", cors())
 
 // app routes
+app.use("/", (req, res) => {
+  res.status(200).json({ message: "Server is working!" });
+});
 app.use("/users", userRoutes)
 app.use("/playgrounds", playGroundRoutes)
 app.use("/bookings", bookingRoutes)
