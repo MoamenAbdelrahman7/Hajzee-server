@@ -23,38 +23,38 @@ const favouritesRoutes = require("./routes/favouritesRoutes.js")
 const app = express()
 
 
-// app.use(cors({
-//   origin: '*',               // Allow all origins
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-//   allowedHeaders: ['*'],     // Allow all request headers
-//   exposedHeaders: ['*'],     // Allow all response headers to be visible to client
-// }));
-app.use(cors());
+app.use(cors({
+  origin: '*',               // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['*'],     // Allow all request headers
+  exposedHeaders: ['*'],     // Allow all response headers to be visible to client
+}));
+
 app.use(express.json());
 
 // Handle preflight requests globally
-// app.options('*', cors());
+app.options('*', cors());
 
 app.use(cookieParser())
 
 // Set some http headers 
-// app.use(helmet({
-//   contentSecurityPolicy: {
-//     directives: {
-//       defaultSrc: ["'self'"],
-//       styleSrc: ["'self'", "'unsafe-inline'"],
-//       scriptSrc: ["'self'"],
-//       imgSrc: ["'self'", "data:", "blob:", "*"], // Allow images from any source
-//       connectSrc: ["'self'"],
-//       fontSrc: ["'self'"],
-//       objectSrc: ["'none'"],
-//       mediaSrc: ["'self'"],
-//       frameSrc: ["'none'"],
-//     },
-//   },
-//   crossOriginResourcePolicy: { policy: "cross-origin" } // Allow cross-origin requests
-// }))
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "blob:", "*"], // Allow images from any source
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'none'"],
+    },
+  },
+  crossOriginResourcePolicy: { policy: "cross-origin" } // Allow cross-origin requests
+}))
+
 // Limit user requests
 // const limiter = rateLimit({
 //     max: Number(process.env.RATE_LIMIT_MAX_REQUESTS),
@@ -72,7 +72,7 @@ if (process.env.NODE_ENV === "development") { app.use(morgan("dev")) }
 app.use("/static", cors(), express.static(path.join(__dirname, "public")))
 
 // Handle preflight requests for static files
-// app.options("/static/*", cors())
+app.options("/static/*", cors())
 
 // app routes
 
