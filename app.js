@@ -32,8 +32,8 @@ app.use(cors({
 
 app.use(express.json());
 
-// Optional: Handle preflight requests
-// app.options('*', cors());
+// Handle preflight requests globally
+app.options('*', cors());
 
 app.use(cookieParser())
 
@@ -75,6 +75,11 @@ app.use("/static", cors(), express.static(path.join(__dirname, "public")))
 app.options("/static/*", cors())
 
 // app routes
+
+// Health check (for Railway/uptime monitors)
+app.get('/healthz', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
 
 app.use("/users", userRoutes)
 app.use("/playgrounds", playGroundRoutes)
